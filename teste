@@ -1,0 +1,229 @@
+import copy
+
+class Jogo:
+    def __init__(self, puzzle, pos_null):
+        self.puzzle = puzzle
+        self.pos_null = pos_null
+
+
+def Mostrar_Puzzle(puzzle):
+    print("Seu puzzle: ")
+    print('| ', puzzle[0], ' | ', puzzle[1], ' | ', puzzle[2], ' |')
+    print('| ', puzzle[3], ' | ', puzzle[4], ' | ', puzzle[5], ' |')
+    print('| ', puzzle[6], ' | ', puzzle[7], ' | ', puzzle[8], ' |')
+
+def Mover(puzzle,pos_zero):
+    a = puzzle[7]
+    puzzle[7] = puzzle[pos_zero]
+    puzzle[pos_zero] = a
+    return puzzle
+
+def CriarFilhos(puzzle, pos):
+    filhos = []
+                            #PRIMEIRO CASO
+    if(puzzle[0] == 0):
+        #Primeiro filho
+        
+        fin = copy.copy(puzzle)
+        fin[0] = puzzle[1]
+        fin[1] = 0
+        filhos.append(fin)
+        #---------------------------
+        #Segundo filho
+        #Mostrar_Puzzle(puzzle)
+        fin = copy.copy(puzzle)
+        fin[0] = puzzle[3]
+        fin[3] = 0
+        filhos.append(fin)
+        #---------------------------
+        return filhos
+                            #SEGUNDO CASO
+    if(puzzle[1] == 0):
+        # Primeiro filho
+        fin = copy.copy(puzzle)
+        fin[1] = puzzle[0]
+        fin[0] = 0
+        filhos.append(fin)
+        # ---------------------------
+        # Segundo filho
+        # Mostrar_Puzzle(puzzle)
+        fin = copy.copy(puzzle)
+        fin[1] = puzzle[2]
+        fin[2] = 0
+        filhos.append(fin)
+        # ---------------------------
+        # Terceiro filho
+        fin = copy.copy(puzzle)
+        fin[1] = puzzle[4]
+        fin[4] = 0
+        filhos.append(fin)
+        #-----------------------------
+        return filhos
+                            #TECRCEIRO CASO
+    if(puzzle[2] == 0):
+        # Primeiro filho
+        fin = copy.copy(puzzle)
+        fin[2] = puzzle[1]
+        fin[1] = 0
+        filhos.append(fin)
+        # ---------------------------
+        # Segundo filho
+        fin = copy.copy(puzzle)
+        fin[5] = puzzle[2]
+        fin[2] = 0
+        filhos.append(fin)
+        # ---------------------------
+        return filhos
+                            #QUARTO CASO
+    if(puzzle[3] == 0):
+        # Primeiro filho
+        fin = copy.copy(puzzle)
+        fin[3] = puzzle[0]
+        fin[0] = 0
+        filhos.append(fin)
+        # ---------------------------
+        # Segundo filho
+        fin = copy.copy(puzzle)
+        fin[3] = puzzle[4]
+        fin[4] = 0
+        filhos.append(fin)
+        # ---------------------------
+        # Terceiro filho
+        fin = copy.copy(puzzle)
+        fin[3] = puzzle[6]
+        fin[6] = 0
+        filhos.append(fin)
+        # ---------------------------
+        return filhos
+                            #QUINTO CASO
+    if(puzzle[4] == 0):
+        # Primeiro filho
+        fin = copy.copy(puzzle)
+        fin[4] = puzzle[1]
+        fin[1] = 0
+        filhos.append(fin)
+        # ---------------------------
+        # Segundo filho
+        fin = copy.copy(puzzle)
+        fin[4] = puzzle[3]
+        fin[3] = 0
+        filhos.append(fin)
+        # ---------------------------
+        # Terceiro filho
+        fin = copy.copy(puzzle)
+        fin[4] = puzzle[5]
+        fin[5] = 0
+        filhos.append(fin)
+        # ---------------------------
+        # Quarto filho
+        fin = copy.copy(puzzle)
+        fin[4] = puzzle[7]
+        fin[7] = 0
+        filhos.append(fin)
+        # ---------------------------
+        return filhos
+                            #SEXTO CASO
+    if(puzzle[5] == 0):
+        # Primeiro filho
+        fin = copy.copy(puzzle)
+        fin[5] = puzzle[2]
+        fin[2] = 0
+        filhos.append(fin)
+        # ---------------------------
+        # Segundo filho
+        fin = copy.copy(puzzle)
+        fin[5] = puzzle[4]
+        fin[4] = 0
+        filhos.append(fin)
+        # ---------------------------
+        # Terceiro filho
+        fin = copy.copy(puzzle)
+        fin[5] = puzzle[8]
+        fin[8] = 0
+        filhos.append(fin)
+        # ---------------------------
+        return filhos
+                            #SETIMO CASO
+    if(puzzle[6] == 0):
+        # Primeiro filho
+        fin = copy.copy(puzzle)
+        fin[6] = puzzle[3]
+        fin[3] = 0
+        filhos.append(fin)
+        # ---------------------------
+        # Segundo filho
+        fin = copy.copy(puzzle)
+        fin[6] = puzzle[7]
+        fin[7] = 0
+        filhos.append(fin)
+        # ---------------------------
+        return filhos
+                            #OITAVO CASO
+    if(puzzle[7] == 0):
+        # Primeiro filho
+        fin = copy.copy(puzzle)
+        fin[7] = puzzle[6]
+        fin[6] = 0
+        filhos.append(fin)
+        # ---------------------------
+        # Segundo filho
+        fin = copy.copy(puzzle)
+        fin[7] = puzzle[8]
+        fin[8] = 0
+        filhos.append(fin)
+        # ---------------------------
+        # Terceiro filho
+        fin = copy.copy(puzzle)
+        fin[7] = puzzle[4]
+        fin[4] = 0
+        filhos.append(fin)
+        # ---------------------------
+        return filhos
+                            #NONO CASO
+    if(puzzle[8] == 0):
+        # Primeiro filho
+        fin = copy.copy(puzzle)
+        fin[8] = puzzle[5]
+        fin[5] = 0
+        filhos.append(fin)
+        # ---------------------------
+        # Segundo filho
+        fin = copy.copy(puzzle)
+        fin[8] = puzzle[7]
+        fin[7] = 0
+        filhos.append(fin)
+        # ---------------------------
+        return filhos
+
+def Comparar(puzzle_original, puzzle):
+    if puzzle_original == puzzle:
+        print("Solução do jogo")
+        return True
+    else:
+        return False
+
+
+solucao = [1,2,3,4,5,6,7,8,0]
+
+lista = [1,2,0,4,5,3,7,8,6]
+
+puzzle = Jogo(solucao,solucao.index(0))
+
+Mostrar_Puzzle(puzzle.puzzle)
+
+
+iterar = []
+filhos = []
+#Mostrar_Puzzle(lista)
+filhos = CriarFilhos(lista)
+#while filhos:
+ #   iterar = filhos.pop(0)
+  #  n_pos = iterar.index(0)
+   # Mostrar_Puzzle(iterar)
+   # filhos = filhos + CriarFilhos(iterar,n_pos)
+    #if Comparar(solucao,iterar):
+     #   break
+    #print(filhos)
+   # iterar = []
+
+
